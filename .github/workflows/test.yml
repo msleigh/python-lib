@@ -1,0 +1,34 @@
+---
+name: Test
+
+on:  # yamllint disable-line rule:truthy
+    push:
+        branches:
+            - main
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout python-lib
+              uses: actions/checkout@v4
+              with:
+                  path: python-lib
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: '3.11'
+            - name: Install dependencies
+              run: |
+                  pip install --upgrade pip cookiecutter
+            - name: Make Python library from template
+              run: |-
+                  cat python-lib/test_input.txt | cookiecutter python-lib
+                  find python-lib-test
+            - name: Run tests and build docs for Python library
+              run: |-
+                  cd python-lib-test
+                  pip install poetry==1.7.0
+                  poetry install
+                  poetry run python3 -m pytest
+                  #poetry run mkdocs build -f docs/mkdocs.yml

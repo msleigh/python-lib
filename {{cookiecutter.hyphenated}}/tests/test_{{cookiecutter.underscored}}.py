@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from {{ cookiecutter.underscored }} import example_function
 
 

@@ -1,28 +1,48 @@
-[project]
+[tool.poetry]
 name = "{{ cookiecutter.hyphenated }}"
-version = "0.1"
+version = "0.0.1"
 description = "{{ cookiecutter.description or "" }}"
 readme = "README.md"
-requires-python = ">=3.8"
-authors = [{name = "{{ cookiecutter.author_name }}"}]
-license = {text = "Apache-2.0"}
-classifiers = [
-    "License :: OSI Approved :: Apache Software License"
+authors = [
+  "{{ cookiecutter.author_name }} <{{ cookiecutter.github_username }}@users.noreply.github.com>",
 ]
-dependencies = [
+license = "Apache-2.0"
 
-]
+[tool.poetry.dependencies]
+python = "^3.11"
+
+black =  { version = "^23.3.0", optional = true }
+mkdocs-material = { version = "^9.5.7", optional = true }
+pre-commit = { version = "^3.3.1", optional = true }
+pytest = { version = "^8.0.0", optional = true }
+ruff = { version = "^0.0.265", optional = true }
+towncrier = { version = "^23.11.0", optional = true }
+
+[tool.poetry.extras]
+test = ["black", "mkdocs-material", "pre-commit", "pytest", "ruff", "towncrier"]
+
+[tool.poetry.scripts]
+
+[tool.towncrier]
+directory = "changelog.d"
+filename = "CHANGELOG.md"
 
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[project]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "License :: OSI Approved :: Apache Software License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+]
+
 {% if cookiecutter.github_username %}
 [project.urls]
 Homepage = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.hyphenated }}"
 Changelog = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.hyphenated }}/releases"
 Issues = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.hyphenated }}/issues"
-CI = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.hyphenated }}/actions"
-{% endif %}
-
-[project.optional-dependencies]
-test = ["pytest"]
+CI = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.hyphenated }}/actions"{% endif %}
