@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{{ cookiecutter.hyphenated }}"
+version = "0.0.1"
+authors = [
+  { name="{{ cookiecutter.author_name }}", email="{{ cookiecutter.github_username }}@users.noreply.github.com" },
+]
+description = "{{ cookiecutter.description }}"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "License :: OSI Approved :: Apache Software License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+]
+
+[project.optional-dependencies]
+dev = [
+  "black",
+]
+docs = [
+  "sphinx",
+]
+tests = [
+  "pytest",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.hyphenated }}"
+"Bug Tracker" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.hyphenated }}/issues"
+"CI" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.hyphenated }}/actions"
+"Changelog" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.hyphenated }}/releases"
+
+[project.scripts]
