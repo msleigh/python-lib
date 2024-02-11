@@ -29,6 +29,6 @@ jobs:
               run: |-
                   cd python-lib-test
                   pip install poetry==1.7.0
-                  poetry install
+                  poetry install --all-extras
                   poetry run python3 -m pytest
-                  #poetry run mkdocs build -f docs/mkdocs.yml
+                  poetry run mkdocs build -f docs/mkdocs.yml
